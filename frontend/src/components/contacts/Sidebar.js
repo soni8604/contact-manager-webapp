@@ -15,7 +15,7 @@ function Sidebar() {
   };
 
   useEffect(() => {
-    fetch("https://santosh-contact-manager-server.herokuapp.com/contact/username", {
+    fetch("https://contact-manager-santosh.onrender.com/contact/username", {
       method: "get",
       headers: {
         accessToken: sessionStorage.getItem("accessToken"),
@@ -30,7 +30,6 @@ function Sidebar() {
   const handleFilter = (e) => {
     const word = e.target.value;
     setshow(word);
-
   };
 
   return (
@@ -148,7 +147,7 @@ function Sidebar() {
                 <img src={userimg} alt="" />
               </h1>
               <div className="user_detail">
-                <p >{user ? user.split("@")[0].toUpperCase() : " Ram Darvin"}</p>
+                <p>{user ? user.split("@")[0].toUpperCase() : " Ram Darvin"}</p>
 
                 <p>Super Admin</p>
               </div>

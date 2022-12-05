@@ -46,7 +46,7 @@ function ImportFile({
 
       // console.log(data);
       if (data) {
-        fetch("https://santosh-contact-manager-server.herokuapp.com/contact/add", {
+        fetch("https://contact-manager-santosh.onrender.com/contact/add", {
           method: "post",
           headers: {
             "Content-Type": "application/json",
@@ -73,7 +73,7 @@ function ImportFile({
         <Upload.Dragger
           listType="picture"
           accept=".csv"
-          action={"https://santosh-contact-manager-server.herokuapp.com/contact/add"}
+          action={"https://contact-manager-santosh.onrender.com/contact/add"}
           beforeUpload={(file) => {
             // console.log(file);
             setImportData(file);

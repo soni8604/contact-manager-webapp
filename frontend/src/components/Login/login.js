@@ -21,7 +21,7 @@ const LoginPage = () => {
         e.preventDefault()
         // console.log(data)
 
-        fetch("https://santosh-contact-manager-server.herokuapp.com/login", {
+        fetch("https://contact-manager-santosh.onrender.com/login", {
             method: "post",
             headers: {
                 "Content-Type": "application/json"

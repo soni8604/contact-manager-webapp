@@ -32,7 +32,7 @@ const RegisterPage = () => {
             if (length) {
                 return
             }
-            fetch('https://santosh-contact-manager-server.herokuapp.com/register', {
+            fetch('https://contact-manager-santosh.onrender.com/register', {
                 method: "post",
                 headers: {
                     "Content-Type": "application/json",

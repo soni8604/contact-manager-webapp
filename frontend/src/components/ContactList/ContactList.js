@@ -33,7 +33,7 @@ const ContactList = ({ show }) => {
 
     const [afterDelete, setafterDelete] = useState(false);
     useEffect(() => {
-        fetch('https://santosh-contact-manager-server.herokuapp.com/contact/alldata', {
+        fetch('https://contact-manager-santosh.onrender.com/contact/alldata', {
             method: "get",
             headers: {
                 accessToken: sessionStorage.getItem("accessToken"),
@@ -52,7 +52,7 @@ const ContactList = ({ show }) => {
     }, [rerender, pageNo, ren]);
 
     useEffect(() => {
-        fetch(`https://santosh-contact-manager-server.herokuapp.com/contact/all/?page=${pageNo}`, {
+        fetch(`https://contact-manager-santosh.onrender.com/contact/all/?page=${pageNo}`, {
             method: "get",
             headers: {
                 accessToken: sessionStorage.getItem("accessToken"),
@@ -82,7 +82,7 @@ const ContactList = ({ show }) => {
 
     const deleteData = () => {
         if (deleteArray) {
-            fetch("https://santosh-contact-manager-server.herokuapp.com/contact/delete", {
+            fetch("https://contact-manager-santosh.onrender.com/contact/delete", {
                 method: "post",
                 headers: {
                     accessToken: sessionStorage.getItem("accessToken"),
@@ -106,7 +106,7 @@ const ContactList = ({ show }) => {
         console.log(e.target.id)
         const id = e.target.id
         let data = [{ id: id }]
-        fetch("https://santosh-contact-manager-server.herokuapp.com/contact/sdelete", {
+        fetch("https://contact-manager-santosh.onrender.com/contact/sdelete", {
             method: "post",
             headers: {
                 accessToken: sessionStorage.getItem("accessToken"),
