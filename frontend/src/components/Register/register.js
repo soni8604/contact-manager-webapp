@@ -32,7 +32,7 @@ const RegisterPage = () => {
             if (length) {
                 return
             }
-            fetch('https://contact-manager-santosh.onrender.com/register', {
+            fetch('http://127.0.0.1:8080/register', {
                 method: "post",
                 headers: {
                     "Content-Type": "application/json",

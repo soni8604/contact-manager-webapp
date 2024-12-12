@@ -21,7 +21,7 @@ const LoginPage = () => {
         e.preventDefault()
         // console.log(data)
 
-        fetch("https://contact-manager-santosh.onrender.com/login", {
+        fetch("http://127.0.0.1:8080/login", {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
@@ -30,19 +30,29 @@ const LoginPage = () => {
                 email: data.email,
                 password: data.password
             })
-        }).then(res => res.json()).then(data => {
-            if (data.message.err) console.log(data.mesaage)
-            if (data.message === "Incorrect Password") {
-                toast.error("Incorrect Password", { position: toast.POSITION.BOTTOM_CENTER })
-            }
-            if (data.message === "USER NOT REGISTERED") {
-                toast.error("User not Registered", { position: toast.POSITION.TOP_CENTER })
-            }
-            if (data.message === "Success") {
-                sessionStorage.setItem('accessToken', data.token)
-                navigate('/contacts')
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.message?.err) console.log(data.message);
+            switch (data.message) {
+                case "Incorrect Password":
+                    toast.error("Incorrect Password", { position: toast.POSITION.BOTTOM_CENTER });
+                    break;
+                case "USER NOT REGISTERED":
+                    toast.error("User not Registered", { position: toast.POSITION.TOP_CENTER });
+                    break;
+                case "Success":
+                    sessionStorage.setItem('accessToken', data.token);
+                    navigate('/contacts');
+                    break;
+                default:
+                    console.error("Unexpected response:", data.message);
             }
         })
+        .catch(err => {
+            console.error("Failed to connect to the server:", err);
+            toast.error("Failed to connect to the server", { position: toast.POSITION.TOP_CENTER });
+        });
     }
 
 

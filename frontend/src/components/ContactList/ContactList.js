@@ -33,7 +33,7 @@ const ContactList = ({ show }) => {
 
     const [afterDelete, setafterDelete] = useState(false);
     useEffect(() => {
-        fetch('https://contact-manager-santosh.onrender.com/contact/alldata', {
+        fetch('http://127.0.0.1:8080/contact/alldata', {
             method: "get",
             headers: {
                 accessToken: sessionStorage.getItem("accessToken"),
@@ -52,7 +52,7 @@ const ContactList = ({ show }) => {
     }, [rerender, pageNo, ren]);
 
     useEffect(() => {
-        fetch(`https://contact-manager-santosh.onrender.com/contact/all/?page=${pageNo}`, {
+        fetch(`http://127.0.0.1:8080/contact/all/?page=${pageNo}`, {
             method: "get",
             headers: {
                 accessToken: sessionStorage.getItem("accessToken"),
@@ -82,7 +82,7 @@ const ContactList = ({ show }) => {
 
     const deleteData = () => {
         if (deleteArray) {
-            fetch("https://contact-manager-santosh.onrender.com/contact/delete", {
+            fetch("http://127.0.0.1:8080/contact/delete", {
                 method: "post",
                 headers: {
                     accessToken: sessionStorage.getItem("accessToken"),
@@ -106,7 +106,7 @@ const ContactList = ({ show }) => {
         console.log(e.target.id)
         const id = e.target.id
         let data = [{ id: id }]
-        fetch("https://contact-manager-santosh.onrender.com/contact/sdelete", {
+        fetch("http://127.0.0.1:8080/contact/sdelete", {
             method: "post",
             headers: {
                 accessToken: sessionStorage.getItem("accessToken"),
@@ -115,6 +115,8 @@ const ContactList = ({ show }) => {
             body: JSON.stringify(data),
         })
             .then((res) => res.json()).then((data) => {
+                console.log(rerender);
+                
                 setRerender(!rerender);
                 toast.success('data deleted')
             })
@@ -409,21 +411,21 @@ const ContactList = ({ show }) => {
                                                     }
                                                 />
                                                 <span>
-                                                    {user.name.charAt(0).toUpperCase() +
-                                                        user.name.slice(1)}
+                                                    {user.name?.charAt(0).toUpperCase() +
+                                                        user.name?.slice(1)}
                                                 </span>
                                             </td>
                                             <td>
-                                                {user.designation.charAt(0).toUpperCase() +
-                                                    user.designation.slice(1)}
+                                                {user.designation?.charAt(0).toUpperCase() +
+                                                    user.designation?.slice(1)}
                                             </td>
                                             <td>
-                                                {user.company.charAt(0).toUpperCase() +
-                                                    user.company.slice(1)}
+                                                {user.company?.charAt(0).toUpperCase() +
+                                                    user.company?.slice(1)}
                                             </td>
                                             <td>
-                                                {user.industry.charAt(0).toUpperCase() +
-                                                    user.industry.slice(1)}
+                                                {user.industry?.charAt(0).toUpperCase() +
+                                                    user.industry?.slice(1)}
                                             </td>
 
                                             <Tippy animation='scale' offset={[-40, 7]} placement="bottom" content={<span style={{ color: "#2DA5FC", fontWeight: 600 }}>{user.email}</span>} theme='light'>
@@ -514,13 +516,13 @@ const ContactList = ({ show }) => {
                                                     }
                                                 />
                                                 <span>
-                                                    {user.name.charAt(0).toUpperCase() +
+                                                    {user.name?.charAt(0).toUpperCase() +
                                                         user.name.slice(1)}
                                                 </span>
                                             </td>
                                             <td>
-                                                {user.designation.charAt(0).toUpperCase() +
-                                                    user.designation.slice(1)}
+                                                {user.designation?.charAt(0).toUpperCase() +
+                                                    user.designation?.slice(1)}
                                             </td>
                                             <td>
                                                 {user.company.charAt(0).toUpperCase() +

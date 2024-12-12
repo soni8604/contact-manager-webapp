@@ -8,13 +8,19 @@ const app = express()
 const user = require('./routes/user');
 const contacts = require('./routes/Contacts')
 app.use(cors())
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
-    if (err) {
-        console.log(err)
-    } else {
-        console.log('Database connected')
-    }
+
+mongoose.connect('mongodb+srv://dhananjaytab88:ug4BTwUP4R3Cstby@cluster0.lgjyo.mongodb.net/', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 30000, // 30 seconds timeout for selecting server
+    socketTimeoutMS: 30000 
 })
+.then(() => {
+    console.log('Database connected successfully');
+})
+.catch((err) => {
+    console.error('Database connection error:', err);
+});
 app.use('/', user)
 app.use('/contact', contacts)
 
@@ -25,4 +31,4 @@ app.get('*', (req, res) => {
 
 })
 
-app.listen(process.env.PORT || port, () => { console.log(`server started on port : http://localhost:8080/`) })
+app.listen(process.env.PORT || '8080', () => { console.log(`server started on port : http://127.0.0.1:8080/`) })

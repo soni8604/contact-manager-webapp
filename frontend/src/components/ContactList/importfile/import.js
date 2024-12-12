@@ -46,7 +46,7 @@ function ImportFile({
 
       // console.log(data);
       if (data) {
-        fetch("https://contact-manager-santosh.onrender.com/contact/add", {
+        fetch("http://127.0.0.1:8080/contact/add", {
           method: "post",
           headers: {
             "Content-Type": "application/json",
@@ -73,7 +73,7 @@ function ImportFile({
         <Upload.Dragger
           listType="picture"
           accept=".csv"
-          action={"https://contact-manager-santosh.onrender.com/contact/add"}
+          action={"http://127.0.0.1:8080/contact/add"}
           beforeUpload={(file) => {
             // console.log(file);
             setImportData(file);

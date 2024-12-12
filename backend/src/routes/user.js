@@ -7,38 +7,34 @@ var jwt = require('jsonwebtoken');
 router.use(express.json())
 
 router.post('/login', async (req, res) => {
-    const { email, password } = req.body
+    const { email, password } = req.body;
+console.log(email,password);
 
     try {
-        const data = await users.findOne({ email: email })
+        const data = await users.findOne({ email });
         if (!data) {
-            return res.status(400).json({ message: "USER NOT REGISTERED" })
-        } else {
-            bcrypt.compare(password, data.password, async function (err, result) {
-                if (err) {
-                    return res.status(500).json({ message: err.message })
-                }
-                if (result) {
-                    const token = jwt.sign({
-                        exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60),
-                        data: data._id
-                    }, process.env.SECRET);
-
-                    return res.status(200).json({ message: "Success", token })
-                } else {
-                    res.json({ message: "Incorrect Password" })
-
-                }
-            });
+            return res.status(400).json({ message: "USER NOT REGISTERED" });
         }
+        
+        const result = bcrypt.compare(password, data.password);
+        if (result) {
+            const token = jwt.sign({
+                exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60),
+                data: data._id
+            }, 'token');
 
+            return res.status(200).json({ message: "Success", token });
+        } else {
+            return res.status(400).json({ message: "Incorrect Password" });
+        }
     } catch (err) {
-        res.status(500).json({
+        return res.status(500).json({
             status: "failed",
             message: err.message
-        })
+        });
     }
-})
+});
+
 
 
 

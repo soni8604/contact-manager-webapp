@@ -8,7 +8,7 @@ const validateToken=(req,res,next)=>{
 
     try{
 
-        verify(accessToken,process.env.SECRET,async(err,decode)=>{
+        verify(accessToken,'token',async(err,decode)=>{
             if(err){
                 return   res.status(400).json({message:err.message })
               }
